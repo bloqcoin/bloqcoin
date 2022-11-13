@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: Bloqcoin consensus library
+Description: Library for the Bloqcoin consensus protocol.
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -lbloqcoinconsensus
+Cflags: -I${includedir}
+Requires.private: libcrypto
