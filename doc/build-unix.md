@@ -63,6 +63,24 @@ Build requirements:
 
     sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
 
+Boost
+-----------
+Boost 1.59 is required for Bloqcoin.
+
+It is recommended to use Boost 1.59. If you have to build it yourself:
+
+```bash
+BLOQCOIN_ROOT=$(pwd)
+
+# Fetch the source
+wget 'https://jaist.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.gz'
+tar -xzvf boost_1_59_0.tar.gz
+
+cd boost_1_59_0
+./bootstrap.sh
+sudo ./bjam install
+```
+
 Berkeley DB
 -----------
 BerkeleyDB is required for the wallet.
@@ -110,24 +128,6 @@ Optional:
 ZMQ dependencies:
 
     sudo apt-get install libzmq3-dev (provides ZMQ API 4.x)
-    
-Boost
------------
-Boost 1.59 is required for Bloqcoin.
-
-It is recommended to use Boost 1.59. If you have to build it yourself:
-
-```bash
-BLOQCOIN_ROOT=$(pwd)
-
-# Fetch the source
-wget 'https://jaist.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.gz'
-tar -xzvf boost_1_59_0.tar.gz
-
-cd boost_1_59_0
-./bootstrap.sh
-sudo ./bjam install
-```
 
 Dependencies for the GUI: Ubuntu & Debian
 -----------------------------------------
