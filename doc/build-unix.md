@@ -63,16 +63,6 @@ Build requirements:
 
     sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
 
-On at least Ubuntu 14.04+ and Debian 7+ there are generic names for the
-individual boost development packages, so the following can be used to only
-install necessary parts of boost:
-
-    sudo apt-get install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
-
-If that doesn't work, you can install all boost development packages with:
-
-    sudo apt-get install libboost-all-dev
-
 Berkeley DB
 -----------
 BerkeleyDB is required for the wallet.
@@ -120,6 +110,24 @@ Optional:
 ZMQ dependencies:
 
     sudo apt-get install libzmq3-dev (provides ZMQ API 4.x)
+    
+Boost
+-----------
+Boost 1.59 is required for Bloqcoin.
+
+It is recommended to use Boost 1.59. If you have to build it yourself:
+
+```bash
+BLOQCOIN_ROOT=$(pwd)
+
+# Fetch the source
+wget 'https://jaist.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.gz'
+tar -xzvf boost_1_59_0.tar.gz
+
+cd boost_1_59_0
+./bootstrap.sh
+sudo ./bjam install
+```
 
 Dependencies for the GUI: Ubuntu & Debian
 -----------------------------------------
@@ -159,15 +167,6 @@ turned off by default.  See the configure options for upnp behavior desired:
 	--without-miniupnpc      No UPnP support miniupnp not required
 	--disable-upnp-default   (the default) UPnP support turned off by default at runtime
 	--enable-upnp-default    UPnP support turned on by default at runtime
-
-Boost
------
-If you need to build Boost yourself:
-
-	sudo su
-	./bootstrap.sh
-	./bjam install
-
 
 Security
 --------
