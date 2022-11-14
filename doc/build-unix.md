@@ -245,9 +245,22 @@ To build executables for ARM:
     cd depends
     make HOST=arm-linux-gnueabihf NO_QT=1
     cd ..
-    ./configure --prefix=$PWD/depends/arm-linux-gnueabihf --enable-glibc-back-compat --enable-reduce-exports LDFLAGS=-static-libstdc++
+    ./configure --prefix=$BLOQCOIN_ROOT/depends/arm-linux-gnueabihf LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="-std=c++14" LDFLAGS=-static-libstdc++ --enable-glibc-back-compat --enable-reduce-exports --enable-cxx --disable-shared --with-pic
     make
 
 
 For further documentation on the depends system see [README.md](../depends/README.md) in the depends directory.
->>>>>>> 3e55b3a... [doc] added depends cross compile info
+
+ARM64 Cross-compilation
+-------------------
+First install the toolchain:
+
+	sudo apt-get install g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
+	
+To build executables for ARM64:
+
+	cd depends
+	make HOST=aarch64-linux-gnu NO_QT=1
+	cd ..
+	./configure --prefix=$BLOQCOIN_ROOT/depends/aarch64-linux-gnu LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="-std=c++14" LDFLAGS=-static-libstdc++ --enable-glibc-back-compat --enable-reduce-exports --enable-cxx --disable-shared --with-pic
+	make
