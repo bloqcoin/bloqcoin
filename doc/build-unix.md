@@ -4,16 +4,6 @@ Some notes on how to build Bloqcoin in Unix.
 
 (for OpenBSD specific instructions, see [build-openbsd.md](build-openbsd.md))
 
-Note
----------------------
-Always use absolute paths to configure and compile bloqcoin and the dependencies,
-for example, when specifying the the path of the dependency:
-
-	../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX
-
-Here BDB_PREFIX must absolute path - it is defined using $(pwd) which ensures
-the usage of the absolute path.
-
 To Build
 ---------------------
 
@@ -109,7 +99,7 @@ make install
 # Configure Bloqcoin to use our own-built instance of BDB
 cd $BLOQCOIN_ROOT
 ./autogen.sh
-./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" # (other args...)
+./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="-std=c++14" # (other args...)
 ```
 
 **Note**: Ubuntu 22.04.1 might receive an error similar to `__atomic_compare_exchange`
