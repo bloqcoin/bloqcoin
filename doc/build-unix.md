@@ -112,6 +112,11 @@ cd $BLOQCOIN_ROOT
 ./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" # (other args...)
 ```
 
+**Note**: Ubuntu 22.04.1 might receive an error similar to `__atomic_compare_exchange`
+Apply this patch:
+
+	sed -i 's/__atomic_compare_exchange/__atomic_compare_exchange_db/g' db-4.8.30.NC/dbinc/atomic.h
+
 **Note**: You only need Berkeley DB if the wallet is enabled (see the section *Disable-Wallet mode* below).
 
 Ubuntu and Debian have their own libdb-dev and libdb++-dev packages, but these will install
