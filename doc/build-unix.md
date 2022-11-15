@@ -239,7 +239,7 @@ To build executables for ARM:
     cd depends
     make HOST=arm-linux-gnueabihf NO_QT=1
     cd ..
-    ./configure --prefix=`pwd`/depends/arm-linux-gnueabihf LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="-std=c++14" LDFLAGS=-static-libstdc++ --enable-glibc-back-compat --enable-reduce-exports --enable-cxx --disable-shared --with-pic --disable-tests --disable-bench
+    ./configure --prefix=`pwd`/depends/arm-linux-gnueabihf CXXFLAGS="-std=c++14" LDFLAGS=-static-libstdc++ --enable-glibc-back-compat --enable-reduce-exports --enable-cxx --disable-shared --with-pic --disable-tests --disable-bench
     make
 
 
@@ -256,5 +256,5 @@ To build executables for ARM64:
 	cd depends
 	make HOST=aarch64-linux-gnu NO_QT=1
 	cd ..
-	./configure --prefix=`pwd`/depends/aarch64-linux-gnu LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="-std=c++14" LDFLAGS=-static-libstdc++ --enable-glibc-back-compat --enable-reduce-exports --enable-cxx --disable-shared --with-pic --disable-tests --disable-bench
+	./configure --prefix=`pwd`/depends/aarch64-linux-gnu CXXFLAGS="-std=c++14" LDFLAGS=-static-libstdc++ --enable-glibc-back-compat --enable-reduce-exports --enable-cxx --disable-shared --with-pic --disable-tests --disable-bench
 	make
