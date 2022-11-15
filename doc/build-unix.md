@@ -60,9 +60,6 @@ Boost 1.59 is required for Bloqcoin.
 It is recommended to use Boost 1.59. If you have to build it yourself:
 
 ```bash
-BLOQCOIN_ROOT=$(pwd)
-
-# Fetch the source
 wget 'https://jaist.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.gz'
 tar -xzvf boost_1_59_0.tar.gz
 
@@ -78,10 +75,8 @@ BerkeleyDB is required for the wallet.
 It is recommended to use Berkeley DB 4.8. If you have to build it yourself:
 
 ```bash
-BLOQCOIN_ROOT=$(pwd)
-
 # Pick some path to install BDB to, here we create a directory within the bloqcoin directory
-BDB_PREFIX="${BLOQCOIN_ROOT}/db4"
+BDB_PREFIX=`pwd`/db4
 mkdir -p $BDB_PREFIX
 
 # Fetch the source and verify that it is not tampered with
@@ -97,7 +92,6 @@ cd db-4.8.30.NC/build_unix/
 make install
 
 # Configure Bloqcoin to use our own-built instance of BDB
-cd $BLOQCOIN_ROOT
 ./autogen.sh
 ./configure LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="-std=c++14" # (other args...)
 ```
@@ -245,7 +239,7 @@ To build executables for ARM:
     cd depends
     make HOST=arm-linux-gnueabihf NO_QT=1
     cd ..
-    ./configure --prefix=$BLOQCOIN_ROOT/depends/arm-linux-gnueabihf LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="-std=c++14" LDFLAGS=-static-libstdc++ --enable-glibc-back-compat --enable-reduce-exports --enable-cxx --disable-shared --with-pic
+    ./configure --prefix=`pwd`/depends/arm-linux-gnueabihf LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="-std=c++14" LDFLAGS=-static-libstdc++ --enable-glibc-back-compat --enable-reduce-exports --enable-cxx --disable-shared --with-pic --disable-tests --disable-bench
     make
 
 
@@ -262,5 +256,5 @@ To build executables for ARM64:
 	cd depends
 	make HOST=aarch64-linux-gnu NO_QT=1
 	cd ..
-	./configure --prefix=$BLOQCOIN_ROOT/depends/aarch64-linux-gnu LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="-std=c++14" LDFLAGS=-static-libstdc++ --enable-glibc-back-compat --enable-reduce-exports --enable-cxx --disable-shared --with-pic
+	./configure --prefix=`pwd`/depends/aarch64-linux-gnu LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/" CXXFLAGS="-std=c++14" LDFLAGS=-static-libstdc++ --enable-glibc-back-compat --enable-reduce-exports --enable-cxx --disable-shared --with-pic --disable-tests --disable-bench
 	make
