@@ -63,7 +63,7 @@ NOTE: Building with Qt4 is still supported, however, could result in a broken UI
     You can disable the gui build by passing `--without-gui` to configure.
 
         ./autogen.sh
-        ./configure
+        ./configure LDFLAGS="-L/usr/local/lib/" CPPFLAGS="-I/usr/local/include/" CXXFLAGS="-std=c++14" # (other args...)
         make
 
 3.  It is also a good idea to build and run the unit tests:
