@@ -27,6 +27,21 @@ dependencies.
 The installation of the actual dependencies is covered in the instructions
 sections below.
 
+Boost
+-----------
+Boost 1.59 is required for Bloqcoin.
+
+
+It is recommended to use Boost 1.59.
+
+```bash
+git clone https://github.com/bloqcoin/boost_1_59_0.git
+
+cd boost_1_59_0
+./bootstrap.sh
+sudo ./b2 install
+```
+
 Instructions: Homebrew
 ----------------------
 
