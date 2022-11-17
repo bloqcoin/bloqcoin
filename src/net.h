@@ -84,6 +84,7 @@ CNode* FindNode(const std::string& addrName);
 CNode* FindNode(const CService& ip);
 CNode* ConnectNode(CAddress addrConnect, const char *pszDest = NULL);
 bool OpenNetworkConnection(const CAddress& addrConnect, CSemaphoreGrant *grantOutbound = NULL, const char *strDest = NULL, bool fOneShot = false);
+bool CheckIncomingNonce(uint64_t nonce);
 void MapPort(bool fUseUPnP);
 unsigned short GetListenPort();
 bool BindListenPort(const CService &bindAddr, std::string& strError, bool fWhitelisted = false);
@@ -430,11 +431,17 @@ private:
     CNode(const CNode&);
     void operator=(const CNode&);
 
+    uint64_t nLocalHostNonce;
+
 public:
 
     NodeId GetId() const {
       return id;
     }
+
+    uint64_t GetLocalNonce() const {
+      return nLocalHostNonce;
+    }    
 
     int GetRefCount()
     {
