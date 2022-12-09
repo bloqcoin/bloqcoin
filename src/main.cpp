@@ -1581,9 +1581,18 @@ bool IsInitialBlockDownload()
 {
     const CChainParams& chainParams = Params();
     LOCK(cs_main);
-    if (fImporting || fReindex || chainActive.Height() < Checkpoints::GetTotalBlocksEstimate(chainParams.Checkpoints()))
+    if (fImporting || fReindex)
         return true;
-    return (chainActive.Height() < pindexBestHeader->nHeight - 24 * 6 || pindexBestHeader->GetBlockTime() < GetTime() - 24 * 60 * 60);
+    if (fCheckpointsEnabled && chainActive.Height() < Checkpoints::GetTotalBlocksEstimate(chainParams.Checkpoints()))
+        return true;
+    static bool lockIBDState = false;
+    if (lockIBDState)
+        return false;
+    bool state = (chainActive.Height() < pindexBestHeader->nHeight - 24 * 6 ||
+            pindexBestHeader->GetBlockTime() < GetTime() - chainParams.MaxTipAge());
+    if (!state)
+        lockIBDState = true;
+    return state;
 }
 
 bool fLargeWorkForkFound = false;
